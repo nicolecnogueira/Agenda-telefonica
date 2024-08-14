@@ -1,0 +1,90 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: AgendaTest.salvarContatoNovo
+      id: agendatest-salvarcontatonovo
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.salvarContatoNovo
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.salvarContatoNovo
+        timeout: 10
+        max-score: 1
+    - name: AgendaTest.salvarContatoExistente
+      id: agendatest-salvarcontatoexistente
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.salvarContatoExistente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.salvarContatoExistente
+        timeout: 10
+        max-score: 1
+    - name: AgendaTest.updateContato
+      id: agendatest-updatecontato
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.updateContato
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.updateContato
+        timeout: 10
+        max-score: 1
+    - name: AgendaTest.buscarPorNome
+      id: agendatest-buscarpornome
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.buscarPorNome
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.buscarPorNome
+        timeout: 10
+        max-score: 1
+    - name: AgendaTest.buscarPorNomeNaoExistente
+      id: agendatest-buscarpornomenaoexistente
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.buscarPorNomeNaoExistente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.buscarPorNomeNaoExistente
+        timeout: 10
+        max-score: 2
+    - name: AgendaTest.buscarPorEmail
+      id: agendatest-buscarporemail
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.buscarPorEmail
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.buscarPorEmail
+        timeout: 10
+        max-score: 2
+    - name: AgendaTest.buscarPorEmailNaoExistente
+      id: agendatest-buscarporemailnaoexistente
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AgendaTest.buscarPorEmailNaoExistente
+        setup-command: ''
+        command: gradle test --tests br.ufrn.imd.AgendaTest.buscarPorEmailNaoExistente
+        timeout: 10
+        max-score: 2
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        AGENDATEST-SALVARCONTATONOVO_RESULTS: "${{steps.agendatest-salvarcontatonovo.outputs.result}}"
+        AGENDATEST-SALVARCONTATOEXISTENTE_RESULTS: "${{steps.agendatest-salvarcontatoexistente.outputs.result}}"
+        AGENDATEST-UPDATECONTATO_RESULTS: "${{steps.agendatest-updatecontato.outputs.result}}"
+        AGENDATEST-BUSCARPORNOME_RESULTS: "${{steps.agendatest-buscarpornome.outputs.result}}"
+        AGENDATEST-BUSCARPORNOMENAOEXISTENTE_RESULTS: "${{steps.agendatest-buscarpornomenaoexistente.outputs.result}}"
+        AGENDATEST-BUSCARPOREMAIL_RESULTS: "${{steps.agendatest-buscarporemail.outputs.result}}"
+        AGENDATEST-BUSCARPOREMAILNAOEXISTENTE_RESULTS: "${{steps.agendatest-buscarporemailnaoexistente.outputs.result}}"
+      with:
+        runners: agendatest-salvarcontatonovo,agendatest-salvarcontatoexistente,agendatest-updatecontato,agendatest-buscarpornome,agendatest-buscarpornomenaoexistente,agendatest-buscarporemail,agendatest-buscarporemailnaoexistente
