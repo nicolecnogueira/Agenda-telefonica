@@ -12,7 +12,7 @@ public class AgendaTelefonica implements Agenda {
 
     @Override
     public void salvar(Contato contato) {
-        // Remover o contato anterior se o e-mail ou o nome já existir
+        // Remove o contato anterior se o e-mail ou o nome já existir
         if (contatosPorEmail.containsKey(contato.getEmail())) {
             Contato contatoAntigo = contatosPorEmail.get(contato.getEmail());
             contatosPorNome.remove(contatoAntigo.getNome());
@@ -22,7 +22,7 @@ public class AgendaTelefonica implements Agenda {
             contatosPorEmail.remove(contatoAntigo.getEmail());
         }
 
-        // Adicionar o novo contato
+        // Adiciona o novo contato
         contatosPorEmail.put(contato.getEmail(), contato);
         contatosPorNome.put(contato.getNome(), contato);
     }
