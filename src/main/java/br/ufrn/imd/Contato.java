@@ -1,3 +1,4 @@
+package br.ufrn.imd;
 public class Contato {
     private String nome;
     private String email;

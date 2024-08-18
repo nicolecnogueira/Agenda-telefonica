@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/imd0040-atv06-v2-nicolecnogueira.iml" filepath="$PROJECT_DIR$/.idea/imd0040-atv06-v2-nicolecnogueira.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src.iml" filepath="$PROJECT_DIR$/src.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java.iml" filepath="$PROJECT_DIR$/java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/src.main.iml" filepath="$PROJECT_DIR$/.idea/modules/src.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/src.test.iml" filepath="$PROJECT_DIR$/.idea/modules/src.test.iml" />
     </modules>
   </component>
 </project>
